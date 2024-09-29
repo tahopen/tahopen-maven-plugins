@@ -9,14 +9,14 @@
 
   <name>Tahopen Maven Plugins Parent</name>
   <description>Aggregation of all the Tahopen owned maven plugins</description>
-
+<!--
   <scm>
     <connection>scm:git:git@github.com:tahopen/tahopen-maven-plugins.git</connection>
     <url>https://github.com/tahopen/tahopen-maven-plugins</url>
     <developerConnection>scm:git:git@github.com:tahopen/tahopen-maven-plugins.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-
+-->
   <distributionManagement>
   <!--
     <repository>

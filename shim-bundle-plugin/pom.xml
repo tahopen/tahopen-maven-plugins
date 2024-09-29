@@ -3,26 +3,27 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.pentaho.maven.plugins</groupId>
+    <groupId>org.tahopen.maven.plugins</groupId>
     <artifactId>maven-plugins</artifactId>
-    <version>1.22</version>
+    <version>1.23-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.pentaho</groupId>
+  <groupId>org.tahopen</groupId>
   <artifactId>shim-bundle-plugin</artifactId>
   <version>1.2-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>maven-dependency-resolver-plugin Maven Plugin</name>
-
+<!--
   <scm>
     <connection>scm:git:git@github.com:pentaho/pentaho-maven-plugins.git</connection>
     <url>https://github.com/pentaho/pentaho-maven-plugins</url>
     <developerConnection>scm:git:git@github.com:pentaho/pentaho-maven-plugins.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-
+-->
   <distributionManagement>
+  <!--
     <repository>
       <id>pentaho.public.release.repo</id>
       <name>Pentaho Public Release Repository</name>
@@ -33,6 +34,7 @@
       <name>Pentaho Public Snapshot Repository</name>
       <url>${pentaho.public.snapshot.repo}</url>
     </snapshotRepository>
+    -->
   </distributionManagement>
 
   <properties>
@@ -42,6 +44,8 @@
     <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
     <org.apache.maven.shared.version>0.9.1</org.apache.maven.shared.version>
     <org.apache.maven.maven-resolver-provider>3.5.0</org.apache.maven.maven-resolver-provider>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>    
   </properties>
 
   <dependencies>
