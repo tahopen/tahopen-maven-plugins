@@ -4,51 +4,37 @@
 
   <groupId>org.tahopen.maven.plugins</groupId>
   <artifactId>maven-plugins</artifactId>
-  <version>1.23-SNAPSHOT</version>
+  <version>0.1.0.0</version>
   <packaging>pom</packaging>
 
   <name>Tahopen Maven Plugins Parent</name>
   <description>Aggregation of all the Tahopen owned maven plugins</description>
-<!--
+  <url>http://www.tahopen.org</url>
+
+  <licenses>
+  
+     <license>
+        <name>Apache License 2.0</name>
+        <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        <distribution>repo</distribution>
+        <comments>A permissive open source license.</comments>
+     </license>
+  
+  </licenses>
+    
   <scm>
-    <connection>scm:git:git@github.com:tahopen/tahopen-maven-plugins.git</connection>
-    <url>https://github.com/tahopen/tahopen-maven-plugins</url>
+    <connection>scm:git:git://github.com/tahopen/tahopen-maven-plugins.git</connection>
     <developerConnection>scm:git:git@github.com:tahopen/tahopen-maven-plugins.git</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
--->
-  <distributionManagement>
-  <!--
-    <repository>
-      <id>pentaho.public.release.repo</id>
-      <name>Pentaho Public Release Repository</name>
-      <url>${pentaho.public.release.repo}</url>
-    </repository>
--->    
-    <snapshotRepository>
-<!--    
-      <id>pentaho.public.snapshot.repo</id>
-      <name>Pentaho Public Snapshot Repository</name>
-      <url>${pentaho.public.snapshot.repo}</url>
--->      
-    </snapshotRepository>
-  </distributionManagement>
+    <url>https://github.com/tahopen/tahopen-maven-plugins</url>
+  </scm>  
 
   <properties>
-  <!--
-    <pentaho.public.release.repo>https://repo.orl.eng.hitachivantara.com/artifactory/pntpub-mvn-release-orl/</pentaho.public.release.repo>
-    <pentaho.public.snapshot.repo>https://repo.orl.eng.hitachivantara.com/artifactory/pntpub-mvn-snapshot-orl/</pentaho.public.snapshot.repo>
-  -->  
-
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
     <maven.version>3.3.9</maven.version>
     <maven-plugin-annotations.version>3.3</maven-plugin-annotations.version>
     <maven-plugin-testing-harness.version>3.3.0</maven-plugin-testing-harness.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-
     <junit.version>4.12</junit.version>
-
     <gmavenplus-plugin.version>1.5</gmavenplus-plugin.version>
     <maven-plugin-plugin.version>3.4</maven-plugin-plugin.version>
     <maven-invoker-plugin.version>1.7</maven-invoker-plugin.version>
@@ -95,7 +81,77 @@
     </dependencies>
   </dependencyManagement>
 
+  <organization>
+    <name>Tahopen Project</name>
+    <url>http://www.tahopen.org</url>
+  </organization>
+
+  <developers>
+
+    <developer>
+      <id>marciojv</id>
+      <name>Marcio Junior Vieira</name>
+      <email>marcio@tahopen.org</email>
+    </developer>
+
+  </developers>
+
   <build>
+    
+    <plugins>
+       
+      <!-- Generate java docs -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- sign key gpg--> 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- publish to Maven Central --> 
+      <plugin>
+         <groupId>org.sonatype.central</groupId>
+         <artifactId>central-publishing-maven-plugin</artifactId>
+         <version>0.6.0</version>
+         <extensions>true</extensions>
+         <configuration>
+           <publishingServerId>maven-central-snapshots</publishingServerId>
+         </configuration>
+      </plugin>    
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.7</version>
+      </plugin>
+ 
+    </plugins>
+
     <pluginManagement>
       <plugins>
         <plugin>
@@ -120,17 +176,20 @@
 	      </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.3</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.7</version>
-      </plugin>
-    </plugins>
-  </build>  
+  </build>
+  
+  <distributionManagement>
+
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
+    
+  </distributionManagement>  
+    
 </project>

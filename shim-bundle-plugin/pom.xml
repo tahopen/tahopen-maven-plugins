@@ -5,37 +5,35 @@
   <parent>
     <groupId>org.tahopen.maven.plugins</groupId>
     <artifactId>maven-plugins</artifactId>
-    <version>1.23-SNAPSHOT</version>
+    <version>0.1.0.0</version>
   </parent>
 
   <groupId>org.tahopen</groupId>
   <artifactId>shim-bundle-plugin</artifactId>
-  <version>1.2-SNAPSHOT</version>
+  <version>0.1.0.0</version>
   <packaging>maven-plugin</packaging>
 
   <name>maven-dependency-resolver-plugin Maven Plugin</name>
-<!--
+  <description>Maven dependency resolver Maven Plugin</description>  
+  <url>http://www.tahopen.org</url>
+    
+
   <scm>
-    <connection>scm:git:git@github.com:pentaho/pentaho-maven-plugins.git</connection>
-    <url>https://github.com/pentaho/pentaho-maven-plugins</url>
-    <developerConnection>scm:git:git@github.com:pentaho/pentaho-maven-plugins.git</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
--->
-  <distributionManagement>
-  <!--
-    <repository>
-      <id>pentaho.public.release.repo</id>
-      <name>Pentaho Public Release Repository</name>
-      <url>${pentaho.public.release.repo}</url>
-    </repository>
-    <snapshotRepository>
-      <id>pentaho.public.snapshot.repo</id>
-      <name>Pentaho Public Snapshot Repository</name>
-      <url>${pentaho.public.snapshot.repo}</url>
-    </snapshotRepository>
-    -->
-  </distributionManagement>
+    <connection>scm:git:git://github.com/tahopen/tahopen-maven-plugins.git</connection>
+    <developerConnection>scm:git:git@github.com:tahopen/tahopen-maven-plugins.git</developerConnection>
+    <url>https://github.com/tahopen/tahopen-maven-plugins</url>
+  </scm>  
+
+  <licenses>
+  
+     <license>
+        <name>Apache License 2.0</name>
+        <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        <distribution>repo</distribution>
+        <comments>A permissive open source license.</comments>
+     </license>
+  
+  </licenses>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -94,8 +92,65 @@
     </dependency>
   </dependencies>
 
-  <build>
+  <organization>
+    <name>Tahopen Project</name>
+    <url>http://www.tahopen.org</url>
+  </organization>
+
+  <developers>
+
+    <developer>
+      <id>marciojv</id>
+      <name>Marcio Junior Vieira</name>
+      <email>marcio@tahopen.org</email>
+    </developer>
+
+  </developers>
+
+
+
+  <build>    
     <plugins>
+       
+      <!-- Generate java docs -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- sign key gpg--> 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- publish to Maven Central --> 
+      <plugin>
+         <groupId>org.sonatype.central</groupId>
+         <artifactId>central-publishing-maven-plugin</artifactId>
+         <version>0.6.0</version>
+         <extensions>true</extensions>
+         <configuration>
+           <publishingServerId>maven-central-snapshots</publishingServerId>
+         </configuration>
+      </plugin>    
+    
       <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>
@@ -110,17 +165,9 @@
         </executions>
       </plugin>
     </plugins>
-    <!--<plugins> -->
-    <!--<plugin> -->
-    <!--<groupId>org.apache.maven.plugins</groupId> -->
-    <!--<artifactId>maven-compiler-plugin</artifactId> -->
-    <!--<version>${maven-compiler-plugin.version}</version> -->
-    <!--<configuration> -->
-    <!--<source>1.8</source> -->
-    <!--<target>1.8</target> -->
-    <!--</configuration> -->
-    <!--</plugin> -->
-    <!--</plugins> -->
+
   </build>
+
+
 
 </project>
