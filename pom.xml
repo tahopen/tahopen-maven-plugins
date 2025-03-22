@@ -9,7 +9,7 @@
 
   <name>Tahopen Maven Plugins Parent</name>
   <description>Aggregation of all the Tahopen owned maven plugins</description>
-  <url>http://www.tahopen.org</url>
+  <url>https://www.tahopen.org</url>
 
   <licenses>
   
